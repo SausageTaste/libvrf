@@ -52,15 +52,15 @@ foreach(lib_path ${mak_lib_paths_combined})
         continue()
     endif()
 
-    string(FIND ${lib_path} "HLA1516" result)
-    if (NOT ${result} EQUAL -1)
-        list(APPEND mak_hla1516_libs ${lib_path})
-        continue()
-    endif()
-
     string(FIND ${lib_path} "HLA1516e" result)
     if (NOT ${result} EQUAL -1)
         list(APPEND mak_hla1516e_libs ${lib_path})
+        continue()
+    endif()
+
+    string(FIND ${lib_path} "HLA1516" result)
+    if (NOT ${result} EQUAL -1)
+        list(APPEND mak_hla1516_libs ${lib_path})
         continue()
     endif()
 
