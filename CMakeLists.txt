@@ -21,50 +21,49 @@ if (NOT LIBVRF_RTI_DIR)
 endif()
 
 
-# Classify VR-Link libs into core, DIS, and HLA13
 file(GLOB mak_lib_paths_combined
-    ${LIBVRF_VRF_DIR}/lib64/*.lib
-    ${LIBVRF_VRL_DIR}/lib64/*.lib
-    ${LIBVRF_RTI_DIR}/lib/*.lib
+    "${LIBVRF_VRF_DIR}/lib64/*.lib"
+    "${LIBVRF_VRL_DIR}/lib64/*.lib"
+    "${LIBVRF_RTI_DIR}/lib/*.lib"
 )
 
 foreach(lib_path ${mak_lib_paths_combined})
-    string(FIND ${lib_path} "boost" result)
+    string(FIND "${lib_path}" "boost" result)
     if (NOT ${result} EQUAL -1)
-        string(FIND ${lib_path} "-gd" result)
+        string(FIND "${lib_path}" "-gd" result)
         if (NOT ${result} EQUAL -1)
-            list(APPEND boost_dbg_libs ${lib_path})
+            list(APPEND boost_dbg_libs "${lib_path}")
         else()
-            list(APPEND boost_rel_libs ${lib_path})
+            list(APPEND boost_rel_libs "${lib_path}")
         endif()
         continue()
     endif()
 
-    string(FIND ${lib_path} "DIS" result)
+    string(FIND "${lib_path}" "DIS" result)
     if (NOT ${result} EQUAL -1)
-        list(APPEND mak_dis_libs ${lib_path})
+        list(APPEND mak_dis_libs "${lib_path}")
         continue()
     endif()
 
-    string(FIND ${lib_path} "HLA13" result)
+    string(FIND "${lib_path}" "HLA13" result)
     if (NOT ${result} EQUAL -1)
-        list(APPEND mak_hla13_libs ${lib_path})
+        list(APPEND mak_hla13_libs "${lib_path}")
         continue()
     endif()
 
-    string(FIND ${lib_path} "HLA1516e" result)
+    string(FIND "${lib_path}" "HLA1516e" result)
     if (NOT ${result} EQUAL -1)
-        list(APPEND mak_hla1516e_libs ${lib_path})
+        list(APPEND mak_hla1516e_libs "${lib_path}")
         continue()
     endif()
 
-    string(FIND ${lib_path} "HLA1516" result)
+    string(FIND "${lib_path}" "HLA1516" result)
     if (NOT ${result} EQUAL -1)
-        list(APPEND mak_hla1516_libs ${lib_path})
+        list(APPEND mak_hla1516_libs "${lib_path}")
         continue()
     endif()
 
-    list(APPEND mak_libs ${lib_path})
+    list(APPEND mak_libs "${lib_path}")
 endforeach()
 
 
@@ -77,16 +76,16 @@ set(boost_libs
 
 
 set(mak_include_dir
-    ${LIBVRF_VRF_DIR}/include
-    ${LIBVRF_VRL_DIR}/include
-    ${LIBVRF_RTI_DIR}/include
+    "${LIBVRF_VRF_DIR}/include"
+    "${LIBVRF_VRL_DIR}/include"
+    "${LIBVRF_RTI_DIR}/include"
 )
 set(base_sources
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/entt_view.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/vector.cpp
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/entt_view.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/vector.cpp"
 )
 set(base_include_dirs
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    "${CMAKE_CURRENT_SOURCE_DIR}/include"
     ${mak_include_dir}
 )
 set(base_libs
